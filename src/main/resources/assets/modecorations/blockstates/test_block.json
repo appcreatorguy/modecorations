@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "charged=false": { "model": "modecorations:block/test_block" },
+    "charged=true": { "model": "modecorations:block/test_block_charged" }
+  }
+}

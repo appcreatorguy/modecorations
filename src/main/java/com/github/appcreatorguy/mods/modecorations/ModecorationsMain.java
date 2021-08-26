@@ -1,5 +1,6 @@
 package com.github.appcreatorguy.mods.modecorations;
 
+import com.github.appcreatorguy.mods.modecorations.block.ModecorationsBlocks;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,8 @@ public class ModecorationsMain implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ModecorationsBlocks.Init();
 
+        LOGGER.info("Mo' Decorations Initialized");
     }
 }
