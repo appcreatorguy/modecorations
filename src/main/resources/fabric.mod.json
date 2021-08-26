@@ -19,7 +19,7 @@
       "com.github.appcreatorguy.mods.modecorations.client.ModecorationsClient"
     ],
     "main": [
-      "com.github.appcreatorguy.mods.modecorations.Modecorations"
+      "com.github.appcreatorguy.mods.modecorations.ModecorationsMain"
     ]
   },
   "mixins": [
