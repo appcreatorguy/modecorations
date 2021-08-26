@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "modecorations",
+  "version": "${version}",
+  "name": "Mo' Decorations",
+  "description": "Sideways Blocks is a Minecraft Fabric mod that aims to add new variants of existing blocks that Mojang hasn't added yet. ",
+  "authors": [
+    "appcreatorguy"
+  ],
+  "contact": {
+    "website": "github.com/appcreatorguy/modecorations",
+    "repo": "github.com/appcreatorguy/modecorations"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/modecorations/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.github.appcreatorguy.mods.modecorations.client.ModecorationsClient"
+    ],
+    "main": [
+      "com.github.appcreatorguy.mods.modecorations.Modecorations"
+    ]
+  },
+  "mixins": [
+    "modecorations.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
