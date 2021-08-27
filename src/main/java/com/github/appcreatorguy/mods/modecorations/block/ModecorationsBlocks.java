@@ -1,9 +1,13 @@
 package com.github.appcreatorguy.mods.modecorations.block;
 
+import com.github.appcreatorguy.mods.modecorations.block.slabs.PolishedAndesiteVerticalSlab;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -24,6 +28,9 @@ public class ModecorationsBlocks {
                     .solidBlock(ModecorationsBlocks::never)
                     .blockVision(ModecorationsBlocks::never));
 
+    public static final PolishedAndesiteVerticalSlab POLISHED_ANDESITE_VERTICAL_SLAB =
+            new PolishedAndesiteVerticalSlab(FabricBlockSettings.copy(Blocks.POLISHED_ANDESITE_SLAB));
+
     // Predicates
     public static Boolean never(BlockState state,
                                 BlockView world,
@@ -40,6 +47,7 @@ public class ModecorationsBlocks {
 
     public static void init() {
         registerBlock(true, "test_block", TEST_BLOCK);
+        registerBlock(true, ItemGroup.BUILDING_BLOCKS, "polished_andesite_vertical_slab", POLISHED_ANDESITE_VERTICAL_SLAB);
 
         LOGGER.info("Mo' Decorations Blocks Initialized");
     }

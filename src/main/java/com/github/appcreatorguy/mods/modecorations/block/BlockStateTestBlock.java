@@ -30,8 +30,8 @@ public class BlockStateTestBlock extends Block {
 
     @Override
     protected void appendProperties(
-            StateManager.Builder<Block, BlockState> stateManager) {
-        stateManager.add(CHARGED);
+            StateManager.Builder<Block, BlockState> builder) {
+        builder.add(CHARGED);
     }
 
     @Override
