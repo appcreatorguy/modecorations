@@ -23,19 +23,36 @@ public record BlockUtils() {
         Registry.register(Registry.BLOCK, ModecorationsMain.id(name), block);
     }
 
-    /** Registers a block and its block item.
+    /**
+     * Registers a block and its block item.
      *
-     *  @param fireproof    if the Block item should resist to fire & Lava.
-     *  @param group        the ItemGroup this block should be in.
-     *  @param name         Name of the block (Identifier path).
-     *  @param block        The declared Block that will be registered.
+     * @param fireproof if the Block item should resist to fire & Lava.
+     * @param group     the ItemGroup this block should be in.
+     * @param name      Name of the block (Identifier path).
+     * @param block     The declared Block that will be registered.
      */
-    public static void registerBlock(boolean fireproof, @Nullable ItemGroup group, String name, Block block){
-        Item.Settings normalSettings = group != null ? new Item.Settings().group(group) : new Item.Settings();
-        Item.Settings fireproofSettings = group != null ? new Item.Settings().group(group).fireproof() : new Item.Settings().fireproof();
+    public static void registerBlock(boolean fireproof,
+                                     @Nullable ItemGroup group,
+                                     String name,
+                                     Block block) {
+        Item.Settings normalSettings;
+        if (group != null) {
+            normalSettings = new Item.Settings().group(group);
+        } else {
+            normalSettings = new Item.Settings();
+        }
+        Item.Settings fireproofSettings;
+        if (group != null) {
+            fireproofSettings = new Item.Settings().group(group).fireproof();
+        } else {
+            fireproofSettings = new Item.Settings().fireproof();
+        }
 
         Registry.register(Registry.BLOCK, ModecorationsMain.id(name), block);
-        Registry.register(Registry.ITEM, ModecorationsMain.id(name), new BlockItem(block, (fireproof ? fireproofSettings : normalSettings)));
+        Registry.register(Registry.ITEM,
+                ModecorationsMain.id(name),
+                new BlockItem(block,
+                        (fireproof ? fireproofSettings : normalSettings)));
     }
 
     public static void registerBlock(boolean fireproof, String name, Block block) {

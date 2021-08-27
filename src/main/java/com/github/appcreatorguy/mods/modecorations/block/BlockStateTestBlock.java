@@ -22,28 +22,34 @@ import net.minecraft.world.World;
 public class BlockStateTestBlock extends Block {
     public static final BooleanProperty CHARGED = BooleanProperty.of("charged");
 
+    public BlockStateTestBlock(Settings settings) {
+        super(settings);
+        setDefaultState(
+                getStateManager().getDefaultState().with(CHARGED, false));
+    }
+
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager){
+    protected void appendProperties(
+            StateManager.Builder<Block, BlockState> stateManager) {
         stateManager.add(CHARGED);
     }
 
-    public BlockStateTestBlock(Settings settings) {
-        super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(CHARGED, false));
-    }
-
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit){
+    public ActionResult onUse(BlockState state,
+                              World world,
+                              BlockPos pos,
+                              PlayerEntity player,
+                              Hand hand,
+                              BlockHitResult hit) {
         ItemStack stackInHand = player.getStackInHand(hand);
-        if (!stackInHand.isEmpty()){
-            if (stackInHand.getItem() == Items.BLAZE_ROD){
+        if (!stackInHand.isEmpty()) {
+            if (stackInHand.getItem() == Items.BLAZE_ROD) {
                 //Remove a single item from the player's hand
                 stackInHand.setCount(stackInHand.getCount() - 1);
                 player.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_CHARGE, 1, 1);
                 world.setBlockState(pos, state.with(CHARGED, true));
                 return ActionResult.CONSUME;
-            }
-            else {
+            } else {
                 return ActionResult.PASS;
             }
         }
@@ -51,14 +57,17 @@ public class BlockStateTestBlock extends Block {
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity){
-        if (world.getBlockState(pos).get(CHARGED)){
+    public void onSteppedOn(World world,
+                            BlockPos pos,
+                            BlockState state,
+                            Entity entity) {
+        if (world.getBlockState(pos).get(CHARGED)) {
             CowEntity cowEntity = EntityType.COW.create(world);
             if (cowEntity != null) {
                 cowEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
             }
             world.spawnEntity(cowEntity);
-            world.setBlockState(pos,state.with(CHARGED, false));
+            world.setBlockState(pos, state.with(CHARGED, false));
         }
     }
 }

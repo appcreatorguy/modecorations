@@ -10,13 +10,13 @@ public class ModecorationsMain implements ModInitializer {
     public static final String MODECORATIONS = "modecorations";
     public static final Logger LOGGER = LogManager.getLogger("Modecorations Logger");
 
-    public static Identifier id(String path){
+    public static Identifier id(String path) {
         return new Identifier(MODECORATIONS, path);
     }
 
     @Override
     public void onInitialize() {
-        ModecorationsBlocks.Init();
+        ModecorationsBlocks.init();
 
         LOGGER.info("Mo' Decorations Initialized");
     }
